@@ -1,7 +1,7 @@
 return {
     "echasnovski/mini.move",
 
-    event = "VeryLazy",
+    lazy = true,
 
     opts = {
         mappings = {
@@ -18,4 +18,14 @@ return {
             line_up = '',
         },
     },
+
+    keys = {
+        {'H'},
+        {'L'},
+
+        {'H', mode = "v"},
+        {'L', mode = "v"},
+        {'J', mode = "v"},
+        {'K', mode = "v"},
+    }
 }

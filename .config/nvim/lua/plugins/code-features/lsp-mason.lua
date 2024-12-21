@@ -1,6 +1,8 @@
 return {
     'williamboman/mason.nvim',
-    event = "VeryLazy",
+    lazy = true,
+
+    cmd = "Mason",
 
     opts = {}
 

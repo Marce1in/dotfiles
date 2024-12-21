@@ -1,7 +1,9 @@
 return {
     "mistricky/codesnap.nvim",
 
-    event = "VeryLazy",
+    lazy = true,
+
+    cmd = "CodeSnap",
 
     build = "make build_generator",
     opts = {

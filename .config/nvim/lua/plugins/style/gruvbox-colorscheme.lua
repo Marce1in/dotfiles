@@ -3,6 +3,8 @@ return {
     name = "gruvbox",
     priority = 1000,
 
+    lazy = false,
+
     opts = {
         palette_overrides = {
             dark0 = "#000000",

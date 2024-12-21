@@ -1,9 +1,7 @@
 return {
     'echasnovski/mini.files',
 
-    version = false,
-
-    lazy = false,
+    lazy = true,
 
     opts = {
         mappings = {
@@ -11,6 +9,6 @@ return {
         }
     },
     keys = {
-        { "-", mode = { "n", "v"}, function() require("mini.files").open() end, desc = "File Manager" },
+        { "-", mode = {"n", "v"}, function() require("mini.files").open() end},
     },
 }

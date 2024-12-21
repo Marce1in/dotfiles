@@ -1,6 +1,14 @@
 return {
     'williamboman/mason-lspconfig.nvim',
 
+    lazy = true,
+
+    event = { "BufReadPre", "BufNewFile" },
+
+    dependencies = {
+        "williamboman/mason.nvim",
+    },
+
     opts = {
         ensure_installed = {
             'lua_ls',
@@ -25,7 +33,7 @@ return {
             'phpactor',
             'elp',
             'rust_analyzer',
-            'arduino_language_server'
+            'arduino_language_server',
         }
     }
 }

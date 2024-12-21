@@ -29,15 +29,18 @@ return {
         lsp.elp.setup { capabilities = cap }
         lsp.rust_analyzer.setup { capabilities = cap }
         lsp.arduino_language_server.setup { capabilities = cap }
+    end,
 
-        vim.keymap.set('n', 'ge', vim.lsp.buf.declaration, {})
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
-        vim.keymap.set('n', 'gf', vim.lsp.buf.format, {})
-        vim.keymap.set('n', 'H', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, {})
-        vim.keymap.set('n', 'ç', vim.lsp.buf.hover, {})
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, {})
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, {})
-    end
+    keys = {
+        { "ge", vim.lsp.buf.declaration },
+        { "gd", vim.lsp.buf.definition },
+        { "gi", vim.lsp.buf.implementation },
+        { "gf", vim.lsp.buf.format },
+        { "H", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end },
+        { "ç", vim.lsp.buf.hover },
+        { "<leader>rn", vim.lsp.buf.rename },
+    },
+
 }

@@ -1,8 +1,7 @@
 return {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
 
-    event = "VeryLazy",
+    lazy = true,
 
     dependencies = {
         'nvim-telescope/telescope-ui-select.nvim',
@@ -13,13 +12,7 @@ return {
 
     },
 
-
     config = function()
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-        vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
         require("telescope").setup {
 
@@ -49,7 +42,19 @@ return {
                 },
             }
         }
-            require('telescope').load_extension('ui-select')
+        require('telescope').load_extension('ui-select')
 
-    end
+    end,
+
+    cmd = "Telescope",
+
+    keys = {
+        {"<leader>ff", function() require("telescope.builtin").find_files() end},
+        {"<leader>fg", function() require("telescope.builtin").live_grep() end},
+        {"<leader>fb", function() require("telescope.builtin").buffers() end},
+        {"<leader>fh", function() require("telescope.builtin").help_tags() end},
+        {"<leader>fr", function() require("telescope.builtin").lsp_references() end},
+        { "<leader>ca", mode = { "n", "v" }, vim.lsp.buf.code_action },
+    },
+
 }

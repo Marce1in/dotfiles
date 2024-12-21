@@ -1,6 +1,5 @@
 return {
   'saghen/blink.cmp',
-  lazy = false,
 
   dependencies = {
     'rafamadriz/friendly-snippets',
@@ -22,13 +21,15 @@ return {
       ['<C-j>'] = { 'snippet_forward', 'fallback' },
       ['<C-k>'] = { 'snippet_backward', 'fallback' },
 
-      ['<Up>'] = { 'select_prev', 'fallback' },
-      ['<Down>'] = { 'select_next', 'fallback' },
       ['<C-p>'] = { 'select_prev', 'fallback' },
       ['<C-o>'] = { 'select_next', 'fallback' },
 
-      ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<Up>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<Down>'] = { 'scroll_documentation_down', 'fallback' },
+    },
+
+    sources = {
+      cmdline = {}
     },
 
     appearance = {
@@ -36,19 +37,14 @@ return {
       nerd_font_variant = "normal"
     },
 
-    windows = {
-      documentation = {
-        auto_show = true,
-        auto_show_delay_ms = 0,
-        update_delay_ms = 50,
-
-      },
-    },
-
     completion = {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 0,
+
+        window = {
+          border = "single"
+        }
       },
 
       trigger = {

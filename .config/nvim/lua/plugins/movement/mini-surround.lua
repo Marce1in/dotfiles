@@ -1,7 +1,9 @@
 return {
     "echasnovski/mini.surround",
 
-    event = "VeryLazy",
+    lazy = true,
+
+    keys = "s",
 
     opts = {},
 }

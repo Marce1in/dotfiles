@@ -6,4 +6,5 @@ return {
 
     { import = "plugins.specific.clojure" },
     { import = "plugins.specific.sql" },
+    { import = "plugins.specific.jupyter" },
 }

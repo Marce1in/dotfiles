@@ -6,6 +6,7 @@ return {
 
         event = "VeryLazy",
 
+        dependencies = { 'windwp/nvim-ts-autotag' },
 
         opts = {
             auto_install = true,

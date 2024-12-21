@@ -7,7 +7,7 @@ alias n="n -e"
 alias grep='grep --color'
 alias fgrep='fgrep --color'
 alias egrep='egrep --color'
-alias bat='bat --theme "Monokai Extended Origin"'
+alias bat='bat --theme "gruvbox-dark"'
 alias ls='lsd'
 alias dwl="slstatus -s | dbus-run-session dwl"
 alias ip="ip -c"
@@ -15,19 +15,17 @@ alias set-volume="wpctl set-volume @DEFAULT_AUDIO_SINK@ $1"
 
 # Variables
 
-export VI="nvim"
-export EDITOR="nvim"
+export VI=nvim
+export EDITOR=nvim
 
 export LS_COLORS="di=1;34:ln=1;36:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
-export NNN_PLUG='f:fzcd;d:dragdrop;'
+export NNN_PLUG="f:fzcd;d:dragdrop;"
 export NNN_FCOLORS="c1e28d2e006033f7c6d6abc4"
 
-export QT_QPA_PLATFORM="wayland-egl"
-export ELM_DISPLAY="wl"
-export SDL_VIDEODRIVER="wayland"
-
-export GTK_THEME=Adwaita-dark
+export QT_QPA_PLATFORM=wayland-egl
+export ELM_DISPLAY=wl
+export SDL_VIDEODRIVER=wayland
 
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
@@ -95,6 +93,9 @@ function y() {
     rm -f -- "$tmp"
 }
 
+#Evals
 
 eval "$(~/.local/bin/mise activate bash)"
+eval "$(mise completion bash)"
+eval "$(zoxide init bash)"
 eval "$(fzf --bash)"

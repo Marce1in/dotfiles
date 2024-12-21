@@ -1,7 +1,5 @@
 return {
-  'lewis6991/gitsigns.nvim',
+  'tpope/vim-fugitive',
 
-  event = "VeryLazy",
-
-  opts = {}
+  lazy = true,
 }
