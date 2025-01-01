@@ -1,6 +1,6 @@
 # Aliases
 
-alias ls="ls --color"
+alias ls="lsd"
 alias repl="clj -M:repl/conjure"
 alias nnn="nnn -e"
 alias n="n -e"
@@ -8,30 +8,35 @@ alias grep='grep --color'
 alias fgrep='fgrep --color'
 alias egrep='egrep --color'
 alias bat='bat --theme "gruvbox-dark"'
-alias ls='lsd'
 alias dwl="slstatus -s | dbus-run-session dwl"
 alias ip="ip -c"
 alias set-volume="wpctl set-volume @DEFAULT_AUDIO_SINK@ $1"
+alias cd="z"
+alias arc="distrobox-enter arch"
 
 # Variables
 
 export VI=nvim
 export EDITOR=nvim
 
-export LS_COLORS="di=1;34:ln=1;36:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
-
-export NNN_PLUG="f:fzcd;d:dragdrop;"
-export NNN_FCOLORS="c1e28d2e006033f7c6d6abc4"
+export LS_COLORS="$(vivid generate gruvbox-dark)"
 
 export QT_QPA_PLATFORM=wayland-egl
 export ELM_DISPLAY=wl
 export SDL_VIDEODRIVER=wayland
 
+export GTK_THEME=Adwaita:dark
+export MOZ_ENABLE_WAYLAND=1
+
+export ANDROID_HOME=$HOME/.android/Android/
+
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
-export PATH=~/.local/bin/:$PATH
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools
 
 # Options
 
@@ -48,8 +53,8 @@ function _prompt() {
     local branco='\[\033[0;m\]'
 
     function _python_venv() {
-        if [ -n "$VIRTUAL_ENV" ]; then
-            echo -e "$vermelho(${roxo}venv$vermelho)-"
+        if [ -n "$VIRTUAL_ENV_PROMPT" ]; then
+            echo -e "$vermelho($roxo$VIRTUAL_ENV_PROMPT$vermelho)-"
         fi
     }
 
@@ -62,7 +67,13 @@ function _prompt() {
         fi
     }
 
-    export PS1="$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco"
+    function _distro() {
+        if [ -n "$CONTAINER_ID" ]; then
+            echo -e "$vermelho($amarelo$CONTAINER_ID$vermelho)-"
+        fi
+    }
+
+    export PS1="$(_distro)$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco"
 }
 
 export PROMPT_COMMAND="_prompt"

@@ -3,7 +3,7 @@ return {
 
     lazy = true,
 
-    keys = "s",
+    keys = {"s", mode = {"v", "n"}},
 
     opts = {},
 }
