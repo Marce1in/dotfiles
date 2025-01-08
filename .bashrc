@@ -1,3 +1,10 @@
+#Evals
+
+eval "$(~/.local/bin/mise activate bash)"
+eval "$(mise completion bash)"
+eval "$(zoxide init bash)"
+eval "$(fzf --bash)"
+
 # Aliases
 
 alias ls="lsd"
@@ -35,6 +42,7 @@ export HISTSIZE=1000
 export HISTFILESIZE=2000
 
 export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools
 
@@ -51,6 +59,13 @@ function _prompt() {
     local verde='\[\033[0;32m\]'
     local amarelo='\[\033[0;33m\]'
     local branco='\[\033[0;m\]'
+
+    function _fg_jobs() {
+        local jobs_count=$(jobs | wc -l)
+        if [ '0' != $jobs_count ]; then
+            echo -e "$vermelho[$amarelo$jobs_count$vermelho]-"
+        fi
+    }
 
     function _python_venv() {
         if [ -n "$VIRTUAL_ENV_PROMPT" ]; then
@@ -73,12 +88,12 @@ function _prompt() {
         fi
     }
 
-    export PS1="$(_distro)$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco"
+    export PS1="$(_fg_jobs)$(_distro)$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco"
 }
 
 export PROMPT_COMMAND="_prompt"
 
-osc7_cwd() {
+function osc7_cwd() {
     local strlen=${#PWD}
     local encoded=""
     local pos c o
@@ -104,9 +119,12 @@ function y() {
     rm -f -- "$tmp"
 }
 
-#Evals
-
-eval "$(~/.local/bin/mise activate bash)"
-eval "$(mise completion bash)"
-eval "$(zoxide init bash)"
-eval "$(fzf --bash)"
+function venv() {
+    if [ -f ./venv/bin/activate ]; then
+        source ./venv/bin/activate
+    elif [ -f ./.venv/bin/activate ]; then
+        source ./.venv/bin/activate
+    else
+        echo "venv not founded :("
+    fi
+}

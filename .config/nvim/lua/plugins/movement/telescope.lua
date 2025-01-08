@@ -19,18 +19,10 @@ return {
             defaults = {
                 layout_strategy = "vertical",
 
-                layout_config = {
-                    height = 0.95,
-                    prompt_position = "bottom",
-                    vertical = {
-                        preview_cutoff = 0,
-                    }
-                },
-
                 mappings = {
                     n = {
                         [" "] = "toggle_selection",
-                    }
+                    },
                 },
 
             },
