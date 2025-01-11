@@ -1,11 +1,27 @@
 #Evals
+if [ -f ~/.local/bin/mise ]; then
+    eval "$(~/.local/bin/mise activate bash)"
+    eval "$(mise completion bash)"
+fi
 
-eval "$(zoxide init bash)"
-eval "$(fzf --bash)"
+if command -v zoxide > /dev/null; then
+    eval "$(zoxide init bash)"
+fi
+
+if command -v fzf > /dev/null; then
+    eval "$(fzf --bash)"
+fi
 
 # Aliases
 
-alias ls="lsd"
+if command -v lsd > /dev/null; then
+    alias ls="lsd"
+fi
+
+if command -v z > /dev/null; then
+    alias cd="z"
+fi
+
 alias repl="clj -M:repl/conjure"
 alias nnn="nnn -e"
 alias n="n -e"
@@ -16,7 +32,6 @@ alias bat='bat --theme "gruvbox-dark"'
 alias dwl="slstatus -s | dbus-run-session dwl"
 alias ip="ip -c"
 alias set-volume="wpctl set-volume @DEFAULT_AUDIO_SINK@ $1"
-alias cd="z"
 alias arc="distrobox-enter arch"
 
 # Variables
@@ -25,7 +40,11 @@ export VI=nvim
 export EDITOR=nvim
 export TERMINAL=foot
 
-export LS_COLORS="$(vivid generate gruvbox-dark)"
+if command -v vivid > /dev/null; then
+    export LS_COLORS="$(vivid generate gruvbox-dark)"
+else
+    export LS_COLORS="di=1;34:ln=1;36:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+fi
 
 export QT_QPA_PLATFORM=wayland-egl
 export ELM_DISPLAY=wl
@@ -69,7 +88,7 @@ function _prompt() {
     function _python_venv() {
         if [ -n "$VIRTUAL_ENV_PROMPT" ]; then
             echo -e "$vermelho($roxo$VIRTUAL_ENV_PROMPT$vermelho)-"
-        fi
+    fi
     }
 
     function _git_branch() {
@@ -87,27 +106,26 @@ function _prompt() {
         fi
     }
 
-    export PS1="$(_fg_jobs)$(_distro)$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco"
+    function osc7_cwd() {
+        local strlen=${#PWD}
+        local encoded=""
+        local pos c o
+        for (( pos=0; pos<strlen; pos++ )); do
+            c=${PWD:$pos:1}
+            case "$c" in
+                [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
+                * ) printf -v o '%%%02X' "'${c}" ;;
+            esac
+            encoded+="${o}"
+        done
+        printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+    }
+
+
+    export PS1="\033]0;$(pwd)\007$(_fg_jobs)$(_distro)$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco$(osc7_cwd)"
 }
 
 export PROMPT_COMMAND="_prompt"
-
-function osc7_cwd() {
-    local strlen=${#PWD}
-    local encoded=""
-    local pos c o
-    for (( pos=0; pos<strlen; pos++ )); do
-        c=${PWD:$pos:1}
-        case "$c" in
-            [-/:_.!\'\(\)~[:alnum:]] ) o="${c}" ;;
-            * ) printf -v o '%%%02X' "'${c}" ;;
-        esac
-        encoded+="${o}"
-    done
-    printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
-}
-
-export PROMPT_COMMAND=${PROMPT_COMMAND:+${PROMPT_COMMAND%;}; }osc7_cwd
 
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
