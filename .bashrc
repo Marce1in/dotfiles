@@ -1,7 +1,5 @@
 #Evals
 
-eval "$(~/.local/bin/mise activate bash)"
-eval "$(mise completion bash)"
 eval "$(zoxide init bash)"
 eval "$(fzf --bash)"
 
@@ -25,6 +23,7 @@ alias arc="distrobox-enter arch"
 
 export VI=nvim
 export EDITOR=nvim
+export TERMINAL=foot
 
 export LS_COLORS="$(vivid generate gruvbox-dark)"
 
