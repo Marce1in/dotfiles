@@ -29,7 +29,11 @@ alias grep='grep --color'
 alias fgrep='fgrep --color'
 alias egrep='egrep --color'
 alias bat='bat --theme "gruvbox-dark"'
-alias dwl="slstatus -s | dbus-run-session dwl"
+alias dwl=" export XDG_CURRENT_DESKTOP=sway && \
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && \
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway && \
+slstatus -s | dwl
+"
 alias ip="ip -c"
 alias set-volume="wpctl set-volume @DEFAULT_AUDIO_SINK@ $1"
 alias arc="distrobox-enter arch"
@@ -67,6 +71,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 # Options
 
 shopt -s checkwinsize
+complete -cf sudo
 
 # Functions
 
@@ -118,11 +123,11 @@ function _prompt() {
             esac
             encoded+="${o}"
         done
-        printf '\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
+        printf '\[\e]7;file://%s%s\e\\' "${HOSTNAME}" "${encoded}"
     }
 
 
-    export PS1="\033]0;$(pwd)\007$(_fg_jobs)$(_distro)$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco$(osc7_cwd)"
+    export PS1="\[\033]0;$(pwd)\007$(_fg_jobs)$(_distro)$(_python_venv)$(_git_branch)$vermelho[$azul\W$vermelho]$amarelo\$ $branco$(osc7_cwd)"
 }
 
 export PROMPT_COMMAND="_prompt"
