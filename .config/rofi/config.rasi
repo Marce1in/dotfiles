@@ -17,9 +17,10 @@
 }
 
 configuration {
-    modi: "drun";
+    modi: "drun,run";
     show-icons: true;
     display-drun: ">";
+    display-run: ">";
 }
 
 listview {
