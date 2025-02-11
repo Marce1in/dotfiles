@@ -10,6 +10,8 @@ return {
 
   event = "VeryLazy",
 
+  cmd = "Mason",
+
   opts = {
     keymap = {
       ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
