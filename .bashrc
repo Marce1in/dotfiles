@@ -17,7 +17,7 @@ function _prompt() {
 
 	function _python_venv() {
 		if [ -n "$VIRTUAL_ENV_PROMPT" ]; then
-			echo -e "$vermelho(${roxo}py-venv$vermelho)-"
+			echo -e "$vermelho(${roxo}venv$vermelho)-"
 		fi
 	}
 
