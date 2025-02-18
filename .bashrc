@@ -154,5 +154,9 @@ function venv() {
 	fi
 }
 
+
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
-	. /usr/share/bash-completion/bash_completion
+	source /usr/share/bash-completion/bash_completion
+
+[[ $PS1 && -f /usr/share/bash-completion/completions/git ]] &&
+	source /usr/share/bash-completion/completions/git
