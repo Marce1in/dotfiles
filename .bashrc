@@ -160,5 +160,3 @@ function venv() {
 
 [[ $PS1 && -f /usr/share/bash-completion/completions/git ]] &&
 	source /usr/share/bash-completion/completions/git
-export PATH="/home/pc/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/pc/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
