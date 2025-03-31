@@ -160,3 +160,11 @@ function venv() {
 
 [[ $PS1 && -f /usr/share/bash-completion/completions/git ]] &&
 	source /usr/share/bash-completion/completions/git
+
+# pnpm
+export PNPM_HOME="/home/pc/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
