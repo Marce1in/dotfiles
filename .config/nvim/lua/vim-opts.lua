@@ -32,6 +32,8 @@ vim.g.maplocalleader = " "
 
 vim.opt.laststatus = 3
 
+vim.opt.termguicolors = true
+
 -- Highlight quando usa yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
