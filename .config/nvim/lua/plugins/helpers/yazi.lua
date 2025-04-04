@@ -26,6 +26,8 @@ return {
     open_for_directories = true,
     keymaps = {
       show_help = "<f1>",
+      grep_in_directory = "<c-x>",
+      open_file_in_horizontal_split = "<c-s>",
     },
   },
 

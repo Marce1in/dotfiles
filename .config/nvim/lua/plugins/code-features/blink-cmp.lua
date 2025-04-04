@@ -17,8 +17,8 @@ return {
 			["<C-e>"] = { "hide", "fallback" },
 			["<CR>"] = { "accept", "fallback" },
 
-			["<Tab>"] = { "snippet_forward", "fallback" },
-			["<S-Tab>"] = { "snippet_backward", "fallback" },
+			-- ["<Tab>"] = { "snippet_forward", "fallback" },
+			-- ["<S-Tab>"] = { "snippet_backward", "fallback" },
 			["<C-j>"] = { "snippet_forward", "fallback" },
 			["<C-k>"] = { "snippet_backward", "fallback" },
 
