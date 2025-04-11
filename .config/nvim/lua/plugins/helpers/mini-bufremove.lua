@@ -1,9 +1,14 @@
 return {
-    'echasnovski/mini.bufremove',
+	"echasnovski/mini.bufremove",
 
-    opts = {},
+	opts = {},
 
-    keys = {
-        {"<C-w>D", function () vim.cmd("lua MiniBufremove.unshow()") end},
-    },
+	keys = {
+		{
+			"<C-d>",
+			function()
+				vim.cmd("lua MiniBufremove.delete()")
+			end,
+		},
+	},
 }

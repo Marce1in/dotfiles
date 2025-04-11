@@ -80,6 +80,7 @@ if command -v z >/dev/null; then
 	alias cd="z"
 fi
 
+
 alias maildebug="python -m aiosmtpd -c DebuggingServer -n localhost:1025"
 alias repl="clj -M:repl/conjure"
 alias nnn="nnn -e"
@@ -160,6 +161,10 @@ function venv() {
 
 [[ $PS1 && -f /usr/share/bash-completion/completions/git ]] &&
 	source /usr/share/bash-completion/completions/git
+
+if [ -d "$HOME/.scripts" ]; then
+	export PATH="$HOME/.scripts:$PATH"
+fi
 
 # pnpm
 export PNPM_HOME="/home/pc/.local/share/pnpm"

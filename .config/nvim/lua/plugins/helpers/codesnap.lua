@@ -11,8 +11,7 @@ return {
         mac_window_bar = false,
         watermark = "",
         has_line_number = true,
-        has_breadcrumps = true,
-        show_workspace = true,
+        has_breadcrumbs = true,
         code_font_family = "Hack Nerd Font",
         save_path = "~/Pictures"
     }
