@@ -8,6 +8,7 @@ return {
 			lualine_c = {
 				{
 					"filename",
+					status = true,
 					path = 1,
 				},
 			},
