@@ -1,6 +1,6 @@
 * {
     /* `otf-font-awesome` and SpaceMono Nerd Font are required to be installed for icons */
-    font-family: BigBlueTermPlus Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: Hack Nerd Font, FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
     transition: background-color .3s ease-out;
 }

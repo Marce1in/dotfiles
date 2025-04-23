@@ -17,10 +17,54 @@ style = "Italic"
 family = "Hack Nerd Font"
 style = "Regular"
 
-[colors.primary]
-background = "#000000"
-
 [keyboard]
 bindings = [
-   { key = "N", mods = "Alt|Shift", action = "SpawnNewInstance" }
+   { key = "e", mods = "Alt|Shift", action = "SpawnNewInstance" },
+   { key = "p", mods = "Alt", action = "ToggleViMode" }
 ]
+
+[colors.primary]
+background = '#000000'
+foreground = '#ebdbb2'
+
+[colors.normal]
+black   = '#282828'
+red     = '#cc241d'
+green   = '#98971a'
+yellow  = '#d79921'
+blue    = '#458588'
+magenta = '#b16286'
+cyan    = '#689d6a'
+white   = '#a89984'
+
+[colors.bright]
+black   = '#928374'
+red     = '#fb4934'
+green   = '#b8bb26'
+yellow  = '#fabd2f'
+blue    = '#83a598'
+magenta = '#d3869b'
+cyan    = '#8ec07c'
+white   = '#ebdbb2'
+
+
+[[hints.enabled]]
+regex = "(https?://[\\w\\-\\.\\:]+(?:/\\S*)?)"
+command = "xdg-open"
+post_processing = true
+persist = false
+
+mouse = { enabled = true, mods = "Control"}
+
+binding = { key = "o", mods = "Alt|Shift"}
+
+
+[[hints.enabled]]
+regex = "((?:/|\\./|\\.\\./)[\\w\\-./]+)"
+
+command = { program = "alacritty", args = [ "-e", "nvim" ]}
+post_processing = false
+persist = false
+
+mouse = { enabled = true, mods = "Control" }
+binding = { key = "o", mods = "Alt" }
