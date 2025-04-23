@@ -173,5 +173,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+# Laravel
 export PATH="/home/pc/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/pc/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+# Laravel end
