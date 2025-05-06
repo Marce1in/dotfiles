@@ -20,7 +20,7 @@ style = "Regular"
 [keyboard]
 bindings = [
    { key = "e", mods = "Alt|Shift", action = "SpawnNewInstance" },
-   { key = "p", mods = "Alt|Shift", action = "ToggleViMode" }
+   { key = "p", mods = "Alt", action = "ToggleViMode" }
 ]
 
 [colors.primary]
@@ -56,7 +56,7 @@ persist = false
 
 mouse = { enabled = true, mods = "Control"}
 
-binding = { key = "o", mods = "Alt|Shift"}
+binding = { key = "o", mods = "Alt" }
 
 
 [[hints.enabled]]
@@ -67,4 +67,4 @@ post_processing = false
 persist = false
 
 mouse = { enabled = true, mods = "Control" }
-binding = { key = "o", mods = "Alt" }
+binding = { key = "o", mods = "Alt|Shift"}
