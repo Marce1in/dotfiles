@@ -11,40 +11,12 @@ return {
   },
 
   config = function ()
-    require("mason").setup()
+      require("mason").setup()
 
-    local mason_lsp = require("mason-lspconfig")
-    local lsp_conf = require("lspconfig")
-    local blink_cmp = require('blink.cmp').get_lsp_capabilities()
+      local mason_lsp = require("mason-lspconfig")
+      local lsp_conf = require("lspconfig")
 
-    mason_lsp.setup()
-
-    mason_lsp.setup_handlers {
-
-      -- Default handler
-      function (server)
-        lsp_conf[server].setup { capabilities = blink_cmp }
-      end,
-
-      -- Example of dedicated handlers for specific servers.
-      -- ["rust_analyzer"] = function ()
-      --     require("rust-tools").setup {}
-      -- end
-      --
-      -- ["lua_ls"] = function ()
-      --   local lspconfig = require("lspconfig")
-      --   lspconfig.lua_ls.setup {
-      --     settings = {
-      --       Lua = {
-      --         diagnostics = {
-      --           globals = { "vim" }
-      --         }
-      --       }
-      --     }
-      --   }
-    }
-
-
+      mason_lsp.setup()
   end,
 
   keys = {
