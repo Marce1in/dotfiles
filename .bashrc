@@ -9,7 +9,7 @@ function _prompt() {
 	local branco='\[\033[0;m\]'
 
 	function _fg_jobs() {
-		local jobs_count=$(jobs | grep -v zoxide | wc -l)
+		local jobs_count=$(jobs | grep -v zoxide | grep -v atuin | wc -l)
 		if [ '0' != $jobs_count ]; then
 			echo -e "$vermelho[$amarelo$jobs_count$vermelho]-"
 		fi
@@ -177,3 +177,8 @@ esac
 export PATH="/home/pc/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/pc/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 # Laravel end
+
+. "$HOME/.atuin/bin/env"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
