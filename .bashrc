@@ -101,7 +101,7 @@ alias arc="distrobox-enter arch"
 # Variables
 
 export VI=nvim
-export EDITOR=nvim
+export EDITOR="alacritty -e nvim"
 export TERMINAL=foot
 
 if command -v vivid >/dev/null; then

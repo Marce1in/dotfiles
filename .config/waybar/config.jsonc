@@ -7,10 +7,12 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces"
-    ],
+        "hyprland/workspaces",
+        "niri/workspaces"
+        ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/window",
+        "niri/window"
     ],
     "modules-right": [
         "network",

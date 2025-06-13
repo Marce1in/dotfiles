@@ -9,7 +9,7 @@ window#waybar {
     background: #000000;
     color: #fbf1c7;
     font-family:
-        BigBlueTermPlus Nerd Font,
+        Hack Nerd Font,
         feather;
     transition: background-color .5s;
 }
@@ -78,7 +78,7 @@ window#waybar {
 
 #workspaces button {
   font-family:
-    BigBlueTermPlus Nerd Font,
+    Hack Nerd Font,
     feather;
   font-weight: 900;
   color: #b8bb26;

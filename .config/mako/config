@@ -1,0 +1,17 @@
+default-timeout=4000
+max-visible=3
+anchor=top-right
+font="Hack Nerd Font"
+
+icons=1
+markup=1
+
+padding=5
+
+background-color=#000000
+progress-color=#b8bb26
+text-color=#b8bb26
+
+border-color=#fe8019
+border-size=2
+border-radius=5
