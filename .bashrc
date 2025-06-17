@@ -183,9 +183,3 @@ export PHP_INI_SCAN_DIR="/home/pc/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 eval "$(atuin init bash --disable-up-arrow)"
-=======
-# . "$HOME/.atuin/bin/env"
-#
-# [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-# eval "$(atuin init bash)"
->>>>>>> 53c628a97fb801ffc175c08d50a07861dd24edfa
