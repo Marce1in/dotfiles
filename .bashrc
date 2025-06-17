@@ -101,7 +101,7 @@ alias arc="distrobox-enter arch"
 # Variables
 
 export VI=nvim
-export EDITOR="alacritty -e nvim"
+export EDITOR="nvim"
 export TERMINAL=foot
 
 if command -v vivid >/dev/null; then
@@ -181,4 +181,4 @@ export PHP_INI_SCAN_DIR="/home/pc/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 . "$HOME/.atuin/bin/env"
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
+eval "$(atuin init bash --disable-up-arrow)"
