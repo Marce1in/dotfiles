@@ -5,6 +5,7 @@ return {
 		"rafamadriz/friendly-snippets",
 		"iguanacucumber/magazine.nvim",
 		"xzbdmw/colorful-menu.nvim",
+		"fang2hou/blink-copilot"
 	},
 
 	version = "1.*",
@@ -12,15 +13,27 @@ return {
 	event = "VeryLazy",
 
 	opts = {
+		sources = {
+			default = { "lsp", "copilot", "buffer", "path" },
+			providers = {
+				copilot = {
+					name = "copilot",
+					module = "blink-copilot",
+					score_offset = -1000,
+					async = true,
+				},
+			}
+		},
+
 		keymap = {
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-e>"] = { "hide", "fallback" },
 			["<CR>"] = { "accept", "fallback" },
 
-			-- ["<Tab>"] = { "snippet_forward", "fallback" },
-			-- ["<S-Tab>"] = { "snippet_backward", "fallback" },
-			["<C-j>"] = { "snippet_forward", "fallback" },
-			["<C-k>"] = { "snippet_backward", "fallback" },
+			["<Tab>"] = { "snippet_forward", "fallback" },
+			["<S-Tab>"] = { "snippet_backward", "fallback" },
+			-- ["<C-j>"] = { "snippet_forward", "fallback" },
+			-- ["<C-k>"] = { "snippet_backward", "fallback" },
 
 			["<C-p>"] = { "select_prev", "fallback" },
 			["<C-o>"] = { "select_next", "fallback" },

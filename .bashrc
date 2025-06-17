@@ -178,7 +178,7 @@ export PATH="/home/pc/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/pc/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 # Laravel end
 
-. "$HOME/.atuin/bin/env"
-
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
+# . "$HOME/.atuin/bin/env"
+#
+# [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+# eval "$(atuin init bash)"
