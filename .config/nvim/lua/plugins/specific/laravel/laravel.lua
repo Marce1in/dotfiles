@@ -12,8 +12,7 @@ return {
     { "<leader>lr", ":Laravel routes<cr>" },
     { "<leader>lm", ":Laravel related<cr>" },
   },
-  lazy = true,
-
-  ft = { "php" },
+  event = { "VeryLazy" },
   opts = {},
+  config = true,
 }

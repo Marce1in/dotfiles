@@ -4,8 +4,7 @@ return {
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 		"iguanacucumber/magazine.nvim",
-		"xzbdmw/colorful-menu.nvim",
-		"fang2hou/blink-copilot"
+		"saghen/blink.compat",
 	},
 
 	version = "1.*",
@@ -14,15 +13,7 @@ return {
 
 	opts = {
 		sources = {
-			default = { "lsp", "copilot", "buffer", "path" },
-			providers = {
-				copilot = {
-					name = "copilot",
-					module = "blink-copilot",
-					score_offset = -1000,
-					async = true,
-				},
-			}
+			default = { "lsp", "buffer", "path" },
 		},
 
 		keymap = {
@@ -32,8 +23,8 @@ return {
 
 			["<Tab>"] = { "snippet_forward", "fallback" },
 			["<S-Tab>"] = { "snippet_backward", "fallback" },
-			-- ["<C-j>"] = { "snippet_forward", "fallback" },
-			-- ["<C-k>"] = { "snippet_backward", "fallback" },
+			["<C-j>"] = { "snippet_forward", "fallback" },
+			["<C-k>"] = { "snippet_backward", "fallback" },
 
 			["<C-p>"] = { "select_prev", "fallback" },
 			["<C-o>"] = { "select_next", "fallback" },
@@ -58,21 +49,6 @@ return {
 		},
 
 		completion = {
-			menu = {
-				draw = {
-					columns = { { "kind_icon" }, { "label", gap = 1 } },
-					components = {
-						label = {
-							text = function(ctx)
-								return require("colorful-menu").blink_components_text(ctx)
-							end,
-							highlight = function(ctx)
-								return require("colorful-menu").blink_components_highlight(ctx)
-							end,
-						},
-					},
-				},
-			},
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 0,

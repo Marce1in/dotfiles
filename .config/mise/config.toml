@@ -1,6 +1,8 @@
 [tools]
 bat = "latest"
 clojure = "latest"
+elixir = "latest"
+erlang = "latest"
 fd = "latest"
 fzf = "latest"
 go = "latest"
@@ -27,3 +29,6 @@ zig = "latest"
 zoxide = "latest"
 
 [env]
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]

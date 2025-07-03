@@ -6,7 +6,7 @@ font="Hack Nerd Font"
 icons=1
 markup=1
 
-padding=5
+padding=20
 
 background-color=#000000
 progress-color=#b8bb26
