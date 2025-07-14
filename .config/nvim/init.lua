@@ -25,6 +25,9 @@ vim.notify = require("notify")
 -- setup colorscheme
 vim.cmd([[colorscheme gruvbox]])
 
+-- Change colorColumn after colorscheme was set
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#101010" })
+
 --  Clojure specific config
 vim.api.nvim_create_autocmd("BufNewFile", {
     group = vim.api.nvim_create_augroup("conjure_log_disable_lsp", { clear = true }),
