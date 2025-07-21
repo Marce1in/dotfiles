@@ -1,23 +1,12 @@
 return {
-	"williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
+	event = "VeryLazy",
 
-	event = { "BufReadPre", "BufNewFile" },
-
-	cmd = "Mason",
-
-	dependencies = {
-		"williamboman/mason.nvim",
-		"neovim/nvim-lspconfig",
-	},
-
-	config = function()
-		require("mason").setup()
-
-		local mason_lsp = require("mason-lspconfig")
-		local lsp_conf = require("lspconfig")
-
-		mason_lsp.setup()
-	end,
+    opts = {},
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+    },
 
 	keys = {
 		{ "ge", vim.lsp.buf.declaration },

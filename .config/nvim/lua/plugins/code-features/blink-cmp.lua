@@ -3,7 +3,6 @@ return {
 
 	dependencies = {
 		"rafamadriz/friendly-snippets",
-		"iguanacucumber/magazine.nvim",
 		"saghen/blink.compat",
 	},
 
@@ -11,6 +10,8 @@ return {
 
 	event = "VeryLazy",
 
+	---@module 'blink.cmp'
+	---@type blink.cmp.Config
 	opts = {
 		sources = {
 			default = { "lazydev", "lsp", "buffer", "path" },
