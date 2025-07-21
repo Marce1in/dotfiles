@@ -1,5 +1,5 @@
 return {
-    'radenling/vim-dispatch-neovim',
+	"radenling/vim-dispatch-neovim",
 
-    lazy = true,
+	lazy = true,
 }

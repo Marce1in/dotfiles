@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap('n', '<C-O>', '<C-U>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-O>", "<C-U>", { noremap = true, silent = true })
 
 -- Manipulação de buffer
 vim.keymap.set("n", "<C-o>", "<Cmd>bn<CR>")

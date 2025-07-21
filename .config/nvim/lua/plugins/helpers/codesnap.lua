@@ -1,18 +1,18 @@
 return {
-    "mistricky/codesnap.nvim",
+	"mistricky/codesnap.nvim",
 
-    lazy = true,
+	lazy = true,
 
-    cmd = "CodeSnap",
+	cmd = "CodeSnap",
 
-    build = "make",
-    opts = {
-        bg_color = "#535c68",
-        mac_window_bar = false,
-        watermark = "",
-        has_line_number = true,
-        has_breadcrumbs = true,
-        code_font_family = "Hack Nerd Font",
-        save_path = "~/Pictures"
-    }
+	build = "make",
+	opts = {
+		bg_color = "#535c68",
+		mac_window_bar = false,
+		watermark = "",
+		has_line_number = true,
+		has_breadcrumbs = true,
+		code_font_family = "Hack Nerd Font",
+		save_path = "~/Pictures",
+	},
 }

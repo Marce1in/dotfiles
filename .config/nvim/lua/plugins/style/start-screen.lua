@@ -5,7 +5,7 @@ return {
 		starter = require("mini.starter")
 
 		starter.setup({
-			header = "\n ____________\n< Neovim btw >\n ------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n";
+			header = "\n ____________\n< Neovim btw >\n ------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n",
 			items = {
 				starter.sections.sessions(5, true),
 				function()

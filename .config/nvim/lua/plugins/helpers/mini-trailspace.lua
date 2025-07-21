@@ -1,11 +1,16 @@
 return {
-    "echasnovski/mini.trailspace",
+	"echasnovski/mini.trailspace",
 
-    event = "VeryLazy",
+	event = "VeryLazy",
 
-    opts = {},
+	opts = {},
 
-    keys = {
-        {"<leader>c<leader>", function () vim.cmd("lua MiniTrailspace.trim()") end}
-    }
+	keys = {
+		{
+			"<leader>c<leader>",
+			function()
+				vim.cmd("lua MiniTrailspace.trim()")
+			end,
+		},
+	},
 }

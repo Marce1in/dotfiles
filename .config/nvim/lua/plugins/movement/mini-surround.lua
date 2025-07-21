@@ -1,5 +1,5 @@
 return {
-    "echasnovski/mini.surround",
+	"echasnovski/mini.surround",
 
-    opts = {},
+	opts = {},
 }

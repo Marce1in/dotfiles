@@ -1,4 +1,4 @@
 return {
-	'echasnovski/mini.jump',
+	"echasnovski/mini.jump",
 	opts = {},
 }

@@ -1,11 +1,10 @@
 return {
-    "rcarriga/nvim-notify",
-
-    event = "VeryLazy",
-
-    opts = {
-        fps = 60,
-        render = "minimal",
-        timeout = 3000,
-    }
+	"j-hui/fidget.nvim",
+	opts = {
+		progress = {
+			display = {
+				done_ttl = 1,
+			},
+		},
+	},
 }

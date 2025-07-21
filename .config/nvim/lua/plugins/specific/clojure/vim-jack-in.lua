@@ -1,5 +1,5 @@
 return {
-    'clojure-vim/vim-jack-in',
+	"clojure-vim/vim-jack-in",
 
-    lazy = true,
+	lazy = true,
 }

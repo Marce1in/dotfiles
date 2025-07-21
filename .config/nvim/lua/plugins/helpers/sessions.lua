@@ -1,6 +1,5 @@
 return {
-    "echasnovski/mini.sessions",
+	"echasnovski/mini.sessions",
 
-    opts = {}
+	opts = {},
 }
-

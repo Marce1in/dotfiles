@@ -1,7 +1,7 @@
 return {
-    "echasnovski/mini.ai",
+	"echasnovski/mini.ai",
 
-    event = "VeryLazy",
+	event = "VeryLazy",
 
-    opts = {},
+	opts = {},
 }

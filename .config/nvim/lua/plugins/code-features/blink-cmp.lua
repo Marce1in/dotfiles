@@ -13,7 +13,15 @@ return {
 
 	opts = {
 		sources = {
-			default = { "lsp", "buffer", "path" },
+			default = { "lazydev", "lsp", "buffer", "path" },
+
+			providers = {
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					score_offset = 100,
+				},
+			},
 		},
 
 		keymap = {
