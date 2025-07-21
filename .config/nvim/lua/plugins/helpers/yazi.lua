@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
 	"mikavilpas/yazi.nvim",
 	event = "VeryLazy",
@@ -21,8 +22,10 @@ return {
 		},
 	},
 
+	---@type YaziConfig | {}
 	opts = {
 		open_for_directories = true,
+		yazi_floating_window_border = "single",
 		keymaps = {
 			show_help = "<f1>",
 			grep_in_directory = "<c-x>",

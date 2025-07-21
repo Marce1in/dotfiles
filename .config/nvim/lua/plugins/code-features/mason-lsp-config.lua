@@ -1,12 +1,19 @@
 return {
-    "mason-org/mason-lspconfig.nvim",
+	"mason-org/mason-lspconfig.nvim",
 	event = "VeryLazy",
 
-    opts = {},
-    dependencies = {
-        { "mason-org/mason.nvim", opts = {} },
-        "neovim/nvim-lspconfig",
-    },
+	opts = {},
+	dependencies = {
+		{
+			"mason-org/mason.nvim",
+			opts = {
+				ui = {
+					border = "single",
+				},
+			},
+		},
+		"neovim/nvim-lspconfig",
+	},
 
 	keys = {
 		{ "ge", vim.lsp.buf.declaration },
@@ -20,7 +27,12 @@ return {
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end,
 		},
-		{ "ç", vim.lsp.buf.hover },
+		{
+			"ç",
+			function()
+				vim.lsp.buf.hover({ border = "single" })
+			end,
+		},
 		{ "<leader>rn", vim.lsp.buf.rename },
 	},
 }

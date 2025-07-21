@@ -17,7 +17,7 @@ require("vim-opts")
 require("vim-keys")
 
 -- load plugins
-require("lazy").setup("plugins", { rocks = { hererocks = true } })
+require("lazy").setup("plugins", { rocks = { hererocks = true }, ui = { border = "single" } })
 
 -- setup notification system
 vim.notify = require("fidget").notify

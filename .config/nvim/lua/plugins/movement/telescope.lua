@@ -11,36 +11,27 @@ return {
 		},
 	},
 
-	config = function()
-		require("telescope").setup({
+	opts = {
+		defaults = {
+			layout_strategy = "vertical",
 
-			defaults = {
-				layout_strategy = "vertical",
+			borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 
-				mappings = {
-					n = {
-						[" "] = "toggle_selection",
-						["<C-d>"] = "delete_buffer",
-						["<C-s>"] = "file_split",
-						["<C-x>"] = false,
-					},
-					i = {
-						["<C-d>"] = "delete_buffer",
-						["<C-s>"] = "file_split",
-						["<C-x>"] = false,
-					},
+			mappings = {
+				n = {
+					[" "] = "toggle_selection",
+					["<C-d>"] = "delete_buffer",
+					["<C-s>"] = "file_split",
+					["<C-x>"] = false,
+				},
+				i = {
+					["<C-d>"] = "delete_buffer",
+					["<C-s>"] = "file_split",
+					["<C-x>"] = false,
 				},
 			},
-
-			extensions = {
-
-				["ui-select"] = {
-					require("telescope.themes").get_dropdown({}),
-				},
-			},
-		})
-		require("telescope").load_extension("ui-select")
-	end,
+		},
+	},
 
 	cmd = "Telescope",
 
@@ -75,6 +66,5 @@ return {
 				require("telescope.builtin").lsp_references()
 			end,
 		},
-		{ "<leader>ca", mode = { "n", "v" }, vim.lsp.buf.code_action },
 	},
 }

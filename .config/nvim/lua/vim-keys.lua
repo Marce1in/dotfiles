@@ -29,11 +29,8 @@ end)
 -- Muda o diretório para o diretório do arquivo aberto
 vim.keymap.set("n", "<leader>cd", "<Cmd>cd %:h<CR>")
 
--- Mostra o'que foi modificado usando o git
-vim.keymap.set("n", "<leader>gp", "<Cmd>Gitsigns preview_hunk<CR>", {})
-
 -- Mostra em uma janelinha o erro de um linha de código
-vim.keymap.set("n", "Ç", "<Cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "Ç", "<Cmd>lua vim.diagnostic.open_float({ border = 'single' })<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "{", "{zz")
 vim.keymap.set("n", "}", "}zz")
