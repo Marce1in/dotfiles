@@ -97,6 +97,7 @@ slstatus -s | dwl
 alias ip="ip -c"
 alias set-volume="wpctl set-volume @DEFAULT_AUDIO_SINK@ $1"
 alias arc="distrobox-enter arch"
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 # Variables
 
@@ -110,23 +111,27 @@ else
 	export LS_COLORS="di=1;34:ln=1;36:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 fi
 
-export QT_QPA_PLATFORM=wayland-egl
+export QT_QPA_PLATFORM=wayland
 export ELM_DISPLAY=wl
 export SDL_VIDEODRIVER=wayland
 
 export GTK_THEME=Adwaita:dark
 export MOZ_ENABLE_WAYLAND=1
 
-export ANDROID_HOME=$HOME/.android/Android/
+export CHROME_EXECUTABLE=chromium-browser
 
 export HISTCONTROL=ignoreboth
 export HISTSIZE=100
 export HISTFILESIZE=5000
 
+export ANDROID_HOME=$HOME/Android/Sdk/
+
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools
+
+export PATH="$PATH:/home/pc/Etc/flutter/bin"
 
 # Options
 
