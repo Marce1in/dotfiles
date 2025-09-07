@@ -57,8 +57,8 @@ export PROMPT_COMMAND="history -a; _prompt"
 
 #Evals
 
-if [ -f ~/.local/bin/mise ]; then
-	eval "$(~/.local/bin/mise activate bash)"
+if command -v mise >/dev/null; then
+	eval "$(mise activate bash)"
 	eval "$(mise completion bash)"
 fi
 
@@ -179,7 +179,10 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-. "$HOME/.atuin/bin/env"
 
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash --disable-up-arrow)"
+if command -v atuin >/dev/null; then
+	. "$HOME/.atuin/bin/env"
+
+	[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+	eval "$(atuin init bash --disable-up-arrow)"
+fi
