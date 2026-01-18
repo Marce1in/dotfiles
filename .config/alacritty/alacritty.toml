@@ -20,7 +20,8 @@ style = "Regular"
 [keyboard]
 bindings = [
    { key = "e", mods = "Alt|Shift", action = "SpawnNewInstance" },
-   { key = "s", mods = "Alt", action = "ToggleViMode" }
+   { key = "s", mods = "Alt", action = "ToggleViMode" },
+   { key = "Return", mods = "Shift", chars = "\u001B\r"} 
 ]
 
 [colors.primary]

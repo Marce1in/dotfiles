@@ -10,4 +10,5 @@ return {
 	{ import = "plugins.specific.jupyter" },
 	{ import = "plugins.specific.laravel" },
 	{ import = "plugins.specific.markdown" },
+	{ import = "plugins.specific.flutter" },
 }

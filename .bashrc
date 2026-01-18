@@ -36,6 +36,11 @@ function _prompt() {
 	}
 
 	function osc7_cwd() {
+		if [[ "$TERM" == "xterm-kitty" || "$TERM_PROGRAM" == "kitty" ]]; then
+			return
+		fi
+
+
 		local strlen=${#PWD}
 		local encoded=""
 		local pos c o
@@ -98,6 +103,7 @@ alias ip="ip -c"
 alias set-volume="wpctl set-volume @DEFAULT_AUDIO_SINK@ $1"
 alias arc="distrobox-enter arch"
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+alias en='nvim .env'
 
 # Variables
 
@@ -124,14 +130,13 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=100
 export HISTFILESIZE=5000
 
-export ANDROID_HOME=$HOME/Android/Sdk/
+export ANDROID_HOME=$HOME/.android/sdk/
 
 export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/rin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools
-
-export PATH="$PATH:/home/pc/Etc/flutter/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Options
 
@@ -150,14 +155,42 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-function venv() {
-	if [ -f ./venv/bin/activate ]; then
-		source ./venv/bin/activate
-	elif [ -f ./.venv/bin/activate ]; then
-		source ./.venv/bin/activate
-	else
-		echo "venv not founded :("
-	fi
+export VENV_HOME="$HOME/.virtualenvs"
+
+[[ -d $VENV_HOME ]] || mkdir $VENV_HOME
+
+lsvenv() {
+  ls -1 $VENV_HOME
+}
+
+venv() {
+  if [ -f venv/bin/activate ]; then
+      source ./venv/bin/activate
+  elif [ -f .venv/bin/activate ]; then
+      source ./.venv/bin/activate
+  elif [ $# -eq 0 ]; then
+      echo "Please provide venv name"
+  else
+      source "$VENV_HOME/$1/bin/activate"
+  fi
+}
+
+mkvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      python3 -m venv $VENV_HOME/$1
+  fi
+}
+
+rmvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      rm -r $VENV_HOME/$1
+  fi
 }
 
 
@@ -179,10 +212,13 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-
 if command -v atuin >/dev/null; then
-	. "$HOME/.atuin/bin/env"
-
 	[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 	eval "$(atuin init bash --disable-up-arrow)"
+fi
+
+## Flyio
+if [ -d "$HOME/.fly" ]; then
+	export FLYCTL_INSTALL="/home/pc/.fly"
+	export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi

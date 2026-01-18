@@ -5,6 +5,8 @@ return {
 
 	cmd = "CodeSnap",
 
+	version = 'v1.6.3',
+
 	build = "make",
 	opts = {
 		bg_color = "#535c68",

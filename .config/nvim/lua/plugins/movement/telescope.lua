@@ -22,6 +22,10 @@ return {
 					[" "] = "toggle_selection",
 					["<C-d>"] = "delete_buffer",
 					["<C-s>"] = "file_split",
+					["<C-h>"] = "preview_scrolling_left",
+					["<C-j>"] = "preview_scrolling_down",
+					["<C-k>"] = "preview_scrolling_up",
+					["<C-l>"] = "preview_scrolling_right",
 					["<C-x>"] = false,
 				},
 				i = {
@@ -36,6 +40,12 @@ return {
 	cmd = "Telescope",
 
 	keys = {
+		{
+			"<leader>rr",
+			function()
+				require("telescope.builtin").resume()
+			end,
+		},
 		{
 			"<leader>ff",
 			function()

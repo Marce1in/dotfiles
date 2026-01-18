@@ -1,0 +1,70 @@
+[font]
+size = 11.0
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[keyboard]
+bindings = [
+   { key = "e", mods = "Alt|Shift", action = "SpawnNewInstance" },
+   { key = "s", mods = "Alt", action = "ToggleViMode" }
+]
+
+[colors.primary]
+background = '#000000'
+foreground = '#ebdbb2'
+
+[colors.normal]
+black   = '#282828'
+red     = '#cc241d'
+green   = '#98971a'
+yellow  = '#d79921'
+blue    = '#458588'
+magenta = '#b16286'
+cyan    = '#689d6a'
+white   = '#a89984'
+
+[colors.bright]
+black   = '#928374'
+red     = '#fb4934'
+green   = '#b8bb26'
+yellow  = '#fabd2f'
+blue    = '#83a598'
+magenta = '#d3869b'
+cyan    = '#8ec07c'
+white   = '#ebdbb2'
+
+
+[[hints.enabled]]
+regex = "(https?://[\\w\\-\\.\\:]+(?:/\\S*)?)"
+command = "xdg-open"
+post_processing = true
+persist = false
+
+mouse = { enabled = true, mods = "Control"}
+
+binding = { key = "g", mods = "Alt" }
+
+
+[[hints.enabled]]
+regex = "((?:/|\\./|\\.\\./)[\\w\\-./]+)"
+
+command = { program = "alacritty", args = [ "-e", "nvim" ]}
+post_processing = false
+persist = false
+
+mouse = { enabled = true, mods = "Control" }
+binding = { key = "g", mods = "Alt|Shift"}

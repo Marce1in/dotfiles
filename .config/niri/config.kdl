@@ -85,6 +85,15 @@ environment {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
+
+output "eDP-1" {
+    position x=1920 y=0
+}
+
+output "HDMI-A-1" {
+    position x=0 y=0
+}
+
 /-output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
@@ -297,7 +306,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
+    slowdown 0.2
 }
 
 // Window rules let you adjust behavior for individual windows.
