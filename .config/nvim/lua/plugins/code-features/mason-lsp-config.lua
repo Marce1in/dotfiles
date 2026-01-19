@@ -3,6 +3,27 @@ return {
 	event = "VeryLazy",
 
 	opts = {},
+	config = function(_, opts)
+		require("mason-lspconfig").setup(opts)
+		-- Extend intelephense to support blade files
+		vim.lsp.config("intelephense", {
+			filetypes = { "php", "blade" },
+			-- Tell intelephense that blade files are PHP
+			get_language_id = function(_, filetype)
+				if filetype == "blade" then
+					return "php"
+				end
+				return filetype
+			end,
+			settings = {
+				intelephense = {
+					files = {
+						associations = { "*.php", "*.blade.php" },
+					},
+				},
+			},
+		})
+	end,
 	dependencies = {
 		{
 			"mason-org/mason.nvim",
