@@ -11,4 +11,5 @@ return {
 	{ import = "plugins.specific.laravel" },
 	{ import = "plugins.specific.markdown" },
 	{ import = "plugins.specific.flutter" },
+	{ import = "plugins.specific.ai" },
 }

@@ -222,3 +222,19 @@ if [ -d "$HOME/.fly" ]; then
 	export FLYCTL_INSTALL="/home/pc/.fly"
 	export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
+
+# opencode
+export PATH=/home/pc/.opencode/bin:$PATH
+alias kimi-fleet="kimi --agent-file ~/.kimi/agents/orchestrator.yaml"
+
+# Claude Code Aliases
+alias claude-dev='claude --system-prompt "$(cat ~/.claude/contexts/dev.md 2>/dev/null || echo \"Focus on implementation. Write clean, minimal code.\")"'
+alias claude-review='claude --system-prompt "$(cat ~/.claude/contexts/review.md 2>/dev/null || echo \"Focus on code review. Check for security, performance, and best practices.\")"'
+alias claude-research='claude --system-prompt "$(cat ~/.claude/contexts/research.md 2>/dev/null || echo \"Explore thoroughly before acting. Gather context, understand patterns.\")"'
+alias claude-cheap='claude --model haiku'
+alias claude-smart='claude --model opus'
+
+# Auto-compact at 20%
+export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi

@@ -1,5 +1,6 @@
 [tools]
 bat = "latest"
+bun = "latest"
 clojure = "latest"
 elixir = "latest"
 erlang = "latest"
