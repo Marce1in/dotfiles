@@ -111,6 +111,8 @@ export VI=nvim
 export EDITOR="nvim"
 export TERMINAL=foot
 
+export SSL_CERT_DIR="$HOME/.aspnet/dev-certs/trust:/etc/pki/tls/certs"
+
 if command -v vivid >/dev/null; then
 	export LS_COLORS="$(vivid generate gruvbox-dark)"
 else
@@ -137,6 +139,7 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/rin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH="$HOME/.local/bin:$PATH"
+export _ZO_DOCTOR=0
 
 # Options
 
@@ -234,7 +237,138 @@ alias claude-research='claude --system-prompt "$(cat ~/.claude/contexts/research
 alias claude-cheap='claude --model haiku'
 alias claude-smart='claude --model opus'
 
-# Auto-compact at 20%
-export CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=20
+alias cc="claude --allow-dangerously-skip-permissions"
+
+codex() {
+	command mise exec node@25.8.2 -- codex "$@"
+}
+
+alias co="codex --dangerously-bypass-approvals-and-sandbox"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init bash)"; fi
+
+export PATH="$PATH:/home/pc/.foundry/bin"
+
+# Connect Haylou S30 headphones.
+fone() {
+	local fallback_mac="DE:15:E3:3D:7E:33"
+	local mac="${1:-}"
+	local sink_prefix
+	local sink
+	local out
+
+	_scan_for_haylou_s30() {
+		echo "Scanning for Haylou S30..."
+		# --timeout stops discovery cleanly. Killing a persistent `scan on`
+		# process can leave bluetoothctl waiting indefinitely on newer BlueZ.
+		# The S30's LE beacon appears first; its classic A2DP endpoint can take
+		# about 20 seconds to show up after pairing mode starts.
+		bluetoothctl --timeout 25 scan on >/dev/null 2>&1 || true
+	}
+
+	_resolve_haylou_s30() {
+		local candidate
+		local info
+		local named_candidate
+
+		while read -r _ candidate _; do
+			[ -n "$candidate" ] || continue
+			info="$(bluetoothctl info "$candidate" 2>/dev/null)"
+			if grep -Eqi '^[[:space:]]*(Name|Alias):.*HAYLOU[[:space:]]+S30' <<<"$info"; then
+				named_candidate="${named_candidate:-$candidate}"
+			fi
+			if grep -Eqi '^[[:space:]]*(Name|Alias):.*HAYLOU[[:space:]]+S30' <<<"$info" &&
+				grep -q "UUID: Audio Sink" <<<"$info"; then
+				printf '%s\n' "$candidate"
+				return 0
+			fi
+		done < <(bluetoothctl devices 2>/dev/null)
+
+		if [ -n "$named_candidate" ]; then
+			printf '%s\n' "$named_candidate"
+			return 0
+		fi
+
+		# Keep the last known classic-audio address as a fallback only while
+		# BlueZ still knows it. The S30 also advertises a changing LE address,
+		# which cannot be used for A2DP pairing.
+		if bluetoothctl info "$fallback_mac" >/dev/null 2>&1; then
+			printf '%s\n' "$fallback_mac"
+			return 0
+		fi
+		return 1
+	}
+
+	_connect_haylou_s30() {
+		timeout 15s bluetoothctl --timeout 12 connect "$1" 2>&1
+	}
+
+	if [ -z "$mac" ]; then
+		mac="$(_resolve_haylou_s30 || true)"
+	fi
+
+	if [ -n "$mac" ]; then
+		echo "Using Haylou S30 at $mac"
+		out="$(_connect_haylou_s30 "$mac")"
+		printf '%s\n' "$out"
+	fi
+
+	if [ -z "$mac" ] || ! grep -Eq "Connection successful|Connected: yes" <<<"$out"; then
+		_scan_for_haylou_s30
+		if [ -z "$1" ]; then
+			mac="$(_resolve_haylou_s30 || true)"
+		fi
+
+		if [ -z "$mac" ]; then
+			echo "The S30 is nearby, but its classic-audio endpoint is not advertising." >&2
+			echo "Disconnect it from other devices, hold its power button until pairing mode starts, then run fone again." >&2
+			return 1
+		fi
+
+		echo "Using Haylou S30 at $mac"
+		if ! bluetoothctl info "$mac" 2>/dev/null | grep -q "Paired: yes"; then
+			echo "Pairing Haylou S30..."
+			out="$(timeout 35s bluetoothctl --timeout 30 pair "$mac" 2>&1)"
+			printf '%s\n' "$out"
+			if ! grep -Eq "Pairing successful|Paired: yes" <<<"$out"; then
+				echo "Pairing failed. Make sure the S30 is in pairing mode and not connected to another device." >&2
+				return 1
+			fi
+		fi
+
+		bluetoothctl trust "$mac" >/dev/null 2>&1 || true
+		out="$(_connect_haylou_s30 "$mac")"
+		printf '%s\n' "$out"
+		if ! grep -Eq "Connection successful|Connected: yes" <<<"$out"; then
+			echo "The S30 was found but the audio connection failed." >&2
+			return 1
+		fi
+	fi
+
+	if ! bluetoothctl info "$mac" 2>/dev/null | grep -q "Connected: yes"; then
+		echo "The S30 did not remain connected." >&2
+		return 1
+	fi
+
+	bluetoothctl trust "$mac" >/dev/null 2>&1 || true
+	sink_prefix="bluez_output.${mac//:/_}"
+
+	for _ in {1..15}; do
+		sink="$(pactl list short sinks | awk -v prefix="$sink_prefix" '$2 ~ "^" prefix { print $2; exit }')"
+		if [ -n "$sink" ]; then
+			pactl set-default-sink "$sink"
+			echo "Audio output set to Haylou S30."
+			return 0
+		fi
+		sleep 1
+	done
+
+	echo "Connected, but PipeWire did not expose an audio sink for $mac" >&2
+	return 1
+}
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+[[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
+# <<< grok installer <<<

@@ -1,6 +1,6 @@
 default-timeout=4000
 max-visible=3
-anchor=top-right
+anchor=bottom-right
 font="Hack Nerd Font"
 
 icons=1

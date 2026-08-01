@@ -2,40 +2,24 @@ return {
 	"saghen/blink.cmp",
 
 	dependencies = {
+		"saghen/blink.lib",
 		"rafamadriz/friendly-snippets",
 		"saghen/blink.compat",
 	},
 
-	version = "1.*",
+	--- event = "VeryLazy",
 
-	event = "VeryLazy",
+	build = function()
+    		-- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
+    		-- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+    		require('blink.cmp').build():pwait()
+  	end,
 
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
 		sources = {
-			default = {"blade", "laravel", "lazydev", "lsp", "buffer", "path" },
-
-			providers = {
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					score_offset = 100,
-				},
-				blade = {
-					name = 'blade',
-					module = "blade-nav.blink",
-					opts = {
-						close_tag_on_complete = true,
-					},
-					score_offset = 95,
-				},
-				laravel = {
-					name = "laravel",
-					module = "blink.compat.source",
-					score_offset = 95,
-				},
-			},
+			default = {"lsp", "buffer", "path" },
 		},
 
 		keymap = {
@@ -69,6 +53,8 @@ return {
 			use_nvim_cmp_as_default = true,
 			nerd_font_variant = "normal",
 		},
+
+		fuzzy = { implementation = "rust" },
 
 		completion = {
 			menu = {

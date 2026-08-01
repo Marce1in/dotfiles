@@ -5,3 +5,8 @@
 	name = Marce1in
 [pull]
 	rebase = false
+[safe]
+	directory = /tmp/tmp.47sGYGGoS3/workspace
+	directory = /tmp/tmp.47sGYGGoS3/workspace
+[includeIf "gitdir:/home/pc/Repos/varejo-consolidado/"]
+	path = /home/pc/.gitconfig-varejo

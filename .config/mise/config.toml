@@ -2,6 +2,7 @@
 bat = "latest"
 bun = "latest"
 clojure = "latest"
+dotnet = "latest"
 elixir = "latest"
 erlang = "latest"
 fd = "latest"
@@ -21,6 +22,7 @@ poetry = "latest"
 python = "latest"
 ripgrep = "latest"
 rust = "latest"
+tree-sitter = "latest"
 usage = "latest"
 uv = "latest"
 vivid = "latest"
@@ -33,3 +35,6 @@ zoxide = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+
+[settings.ruby]
+compile = false

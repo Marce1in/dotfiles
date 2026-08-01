@@ -1,9 +1,36 @@
 return {
 	"mason-org/mason-lspconfig.nvim",
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
 
-	opts = {},
+	opts = {
+		ensure_installed = { "vtsls", "vue_ls" },
+		automatic_enable = {
+			exclude = { "ts_ls" },
+		},
+	},
 	config = function(_, opts)
+		local vue_language_server_path = vim.fn.stdpath("data")
+			.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+		local vue_plugin = {
+			name = "@vue/typescript-plugin",
+			location = vue_language_server_path,
+			languages = { "vue" },
+			configNamespace = "typescript",
+		}
+
+		vim.lsp.config("vtsls", {
+			settings = {
+				vtsls = {
+					tsserver = {
+						globalPlugins = {
+							vue_plugin,
+						},
+					},
+				},
+			},
+			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+		})
+
 		require("mason-lspconfig").setup(opts)
 		-- Extend intelephense to support blade files
 		vim.lsp.config("intelephense", {

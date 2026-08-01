@@ -46,7 +46,7 @@ if [[ -z $region ]]; then
 fi
 
 # Prepare paths
-outdir="$HOME/Gifs"
+outdir="$HOME/Videos"
 mkdir -p "$outdir"
 ts=$(date '+%F-%T')
 raw="$outdir/$ts.mp4"
